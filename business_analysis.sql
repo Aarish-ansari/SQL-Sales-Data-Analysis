@@ -116,12 +116,21 @@ JOIN Data d2
 GROUP BY Product_1, Product_2
 ORDER BY Frequency DESC;
 -- Find the Top highest revenue months
-
 SELECT * from Data;
 select monthname(Order_Date) as 'Month', sum(Amount) As 'Revenue' 
 from Data 
 group by monthname(Order_Date)
 order by sum(Amount) DESC;
-
+-- Which payment mode is used most frequently? 
+SELECT Payment_Mode , count(*) as "Freqency" 
+from Data 
+group by Payment_Mode 
+order by Freqency desc;
+-- Find the largest order placed in terms of Amount.
+select Order_Details,Order_Date, Customer_Name , Product , max(Amount) as 'Max_Amount' 
+from  Data 
+group by Order_Details,Order_Date, Customer_Name , Product
+order by Max_Amount desc
+limit 1;
 
 
